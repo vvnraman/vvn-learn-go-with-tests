@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "learn-go-with-tests"
+version = "0.1.0"
+description = ""
+authors = ["Prateek Raman <vvnraman@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+Sphinx = "^4.0.2"
+sphinx-rtd-theme = "^0.5.2"
+sphinxcontrib-seqdiag = "^2.0.0"
+sphinxcontrib-nwdiag = "^2.0.0"
+sphinxcontrib-blockdiag = "^2.0.0"
+sphinxemoji = "^0.1.8"
+sphinx-tabs = "^3.0.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
