@@ -16,5 +16,3 @@ Run it
 .. code-block:: sh
 
    go run hello.go
-
-

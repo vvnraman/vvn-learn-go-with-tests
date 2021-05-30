@@ -49,6 +49,19 @@ Official binaries available at https://golang.org/doc/install
 
 - A more recent version of the install routing might be present in my Notebook.
 
+Tools setup
+===========
+
+.. code-block:: sh
+
+   go get -u golang.org/x/tools/...
+
+Installed a bunch of stuff in ``$HOME/go/bin``, which we have to add to
+``$PATH``.
+
+Test it by running ``godoc -http :8000`` and opening up
+http://localhost:8000/pkg
+
 Editor setup - vim
 ==================
 
@@ -58,7 +71,7 @@ Install https://github.com/fatih/vim-go plugin
 
    Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
-``GoUpdateBinaries`` takes a while.
+``GoUpdateBinaries`` may take a while.
 
 Project setup
 =============
