@@ -11,4 +11,9 @@ all string fields found inside.
 
    walk(x interface{}, fn func(string))
 
+``reflect.ValueOf``
+===================
+
+The ``reflect`` package's ``ValueOf()`` method returns us a ``Value`` of a given
+variable.
 

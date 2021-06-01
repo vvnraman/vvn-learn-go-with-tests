@@ -33,7 +33,7 @@ func TestCheckWebsites(t *testing.T) {
 	}
 }
 
-func slowStufWebsiteChecker(_ string) bool {
+func slowStubWebsiteChecker(_ string) bool {
 	time.Sleep(20 * time.Millisecond)
 	return true
 }
@@ -45,6 +45,6 @@ func BenchmarkCheckWebsites(b *testing.B) {
 	}
 
 	for i := 0; i < b.N; i++ {
-		CheckWebsites(slowStufWebsiteChecker, urls)
+		CheckWebsites(slowStubWebsiteChecker, urls)
 	}
 }
