@@ -1,0 +1,274 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Concurrency &mdash; Prateek&#39;s Learn go with tests 1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/tabs.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Select" href="select.html" />
+    <link rel="prev" title="Mocking" href="mocking.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Prateek's Learn go with tests
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install-go.html">Install go</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hello-world.html">Hello World</a></li>
+<li class="toctree-l1"><a class="reference internal" href="integers.html">Integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iteration.html">Iteration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arrays-and-slices.html">Arrays and slices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="structs-methods-interfaces.html">Structs, Methods &amp; Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pointers-and-errors.html">Pointers &amp; Errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="maps.html">Maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dependency-injection.html">Dependency Injection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mocking.html">Mocking</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Concurrency</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#goroutines">Goroutines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#anonymous-functions">Anonymous functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#channels">Channels</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="select.html">Select</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reflection.html">Reflection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sync.html">Sync</a></li>
+<li class="toctree-l1"><a class="reference internal" href="context.html">Context</a></li>
+<li class="toctree-l1"><a class="reference internal" href="property-based-tests.html">Intro to property based tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="maths.html">Maths</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Prateek's Learn go with tests</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Concurrency</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/concurrency.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="concurrency">
+<h1>Concurrency<a class="headerlink" href="#concurrency" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="goroutines">
+<h2>Goroutines<a class="headerlink" href="#goroutines" title="Permalink to this headline">¶</a></h2>
+<p>An operation that does not block in golang will run in a separate process called
+a <strong>goroutine</strong>. We tell golang to start a new <strong>goroutine</strong> by putting the
+keyword <code class="docutils literal notranslate"><span class="pre">go</span></code> in front of it.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="k">go</span> <span class="nx">doSomething</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This is often done by using an anonymous function, i.e. one without a name.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="k">go</span> <span class="kd">func</span><span class="p">(</span><span class="nx">u</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+     <span class="nx">results</span><span class="p">[</span><span class="nx">u</span><span class="p">]</span> <span class="p">=</span> <span class="nx">wc</span><span class="p">(</span><span class="nx">u</span><span class="p">)</span>
+<span class="p">}(</span><span class="nx">url</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="anonymous-functions">
+<h2>Anonymous functions<a class="headerlink" href="#anonymous-functions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>They can be executed at the same time that they’re declared, by putting <code class="docutils literal notranslate"><span class="pre">()</span></code>
+at the end of the anonymous function.</p></li>
+<li><p>They maintain access to the lexical scope they are defined in - all the
+variables that are available at the point when you declare the anonymous
+function are also available in the body of the function.</p></li>
+</ul>
+</div>
+<div class="section" id="channels">
+<h2>Channels<a class="headerlink" href="#channels" title="Permalink to this headline">¶</a></h2>
+<p>When we start a <strong>goroutine</strong>, the main program doesn’t wait for it to complete
+before existing. We may unexpectedly either get a panic or we’ll have empty data
+in any variable we were populating in the <strong>goroutine</strong>.</p>
+<p>To solve such issues (and possible data races), we can co-ordinate our
+<strong>goroutines</strong> using channels.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="c1">// Send statement</span>
+<span class="nx">resultChannel</span> <span class="o">&lt;-</span> <span class="nx">result</span><span class="p">{</span><span class="nx">u</span><span class="p">,</span> <span class="nx">wc</span><span class="p">(</span><span class="nx">u</span><span class="p">)}</span>
+
+<span class="c1">// Receive expression</span>
+<span class="nx">r</span> <span class="o">:=</span> <span class="o">&lt;-</span> <span class="nx">resultChannel</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="select.html" class="btn btn-neutral float-right" title="Select" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="mocking.html" class="btn btn-neutral float-left" title="Mocking" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Prateek Raman.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,290 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Context &mdash; Prateek&#39;s Learn go with tests 1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/tabs.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Intro to property based tests" href="property-based-tests.html" />
+    <link rel="prev" title="Sync" href="sync.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Prateek's Learn go with tests
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install-go.html">Install go</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hello-world.html">Hello World</a></li>
+<li class="toctree-l1"><a class="reference internal" href="integers.html">Integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iteration.html">Iteration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arrays-and-slices.html">Arrays and slices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="structs-methods-interfaces.html">Structs, Methods &amp; Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pointers-and-errors.html">Pointers &amp; Errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="maps.html">Maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dependency-injection.html">Dependency Injection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mocking.html">Mocking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concurrency.html">Concurrency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="select.html">Select</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reflection.html">Reflection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sync.html">Sync</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Context</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#context-tree">Context tree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#context-done"><code class="docutils literal notranslate"><span class="pre">Context.Done()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="property-based-tests.html">Intro to property based tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="maths.html">Maths</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Prateek's Learn go with tests</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Context</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/context.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="context">
+<h1>Context<a class="headerlink" href="#context" title="Permalink to this headline">¶</a></h1>
+<p>Helps us manage long running, resource intensive processes.</p>
+<div class="section" id="context-tree">
+<h2>Context tree<a class="headerlink" href="#context-tree" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://blog.golang.org/context">https://blog.golang.org/context</a></p>
+<blockquote>
+<div><p>The context package provides functdions to derive new Context values from
+existing ones. These values form a tree: when a Context is cancelled, all
+Contexts derived from it are also cancelled.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Context.WithCancel()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Context.WithDeadline()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Context.WithTimeout()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Context.WithValue()</span></code></p></li>
+</ul>
+</div></blockquote>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">data</span> <span class="o">:=</span> <span class="s">&quot;hello, world&quot;</span>
+<span class="nx">store</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">SpyStore</span><span class="p">{</span><span class="nx">response</span><span class="p">:</span> <span class="nx">data</span><span class="p">}</span>
+<span class="nx">server</span> <span class="o">:=</span> <span class="nx">Server_v2</span><span class="p">(</span><span class="nx">store</span><span class="p">)</span>
+
+<span class="nx">request</span> <span class="o">:=</span> <span class="nx">httptest</span><span class="p">.</span><span class="nx">NewRequest</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">MethodGet</span><span class="p">,</span> <span class="s">&quot;/&quot;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span>
+<span class="nx">response</span> <span class="o">:=</span> <span class="nx">httptest</span><span class="p">.</span><span class="nx">NewRecorder</span><span class="p">()</span>
+
+<span class="nx">cancellingCtx</span><span class="p">,</span> <span class="nx">cancel</span> <span class="o">:=</span> <span class="nx">context</span><span class="p">.</span><span class="nx">WithCancel</span><span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">Context</span><span class="p">())</span>
+<span class="nx">time</span><span class="p">.</span><span class="nx">AfterFunc</span><span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="nx">time</span><span class="p">.</span><span class="nx">Millisecond</span><span class="p">,</span> <span class="nx">cancel</span><span class="p">)</span>
+<span class="nx">request</span> <span class="p">=</span> <span class="nx">request</span><span class="p">.</span><span class="nx">WithContext</span><span class="p">(</span><span class="nx">cancellingCtx</span><span class="p">)</span>
+
+
+<span class="nx">server</span><span class="p">.</span><span class="nx">ServeHTTP</span><span class="p">(</span><span class="nx">response</span><span class="p">,</span> <span class="nx">request</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Where we’re doing above is derive a new <code class="docutils literal notranslate"><span class="pre">cancellingCtx</span></code> from our <code class="docutils literal notranslate"><span class="pre">request</span></code>,
+which returns us a <code class="docutils literal notranslate"><span class="pre">cancel</span></code> function. We then schedule that function to be
+called in 5 miliseconds. Finally we use this new context in our request by
+calling <code class="docutils literal notranslate"><span class="pre">request.WithContext</span></code>.</p>
+</div>
+<div class="section" id="context-done">
+<h2><code class="docutils literal notranslate"><span class="pre">Context.Done()</span></code><a class="headerlink" href="#context-done" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Context</span></code> has a <code class="docutils literal notranslate"><span class="pre">Done()</span></code> method which returns a channel which gets sent a
+signal when the context is either “done” or “cancelled”. We can listen to that
+signal and call <code class="docutils literal notranslate"><span class="pre">store.Cancel()</span></code> if we get it.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">ctx</span> <span class="o">:=</span> <span class="nx">r</span><span class="p">.</span><span class="nx">Context</span><span class="p">()</span>
+
+<span class="nx">data</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+     <span class="nx">data</span> <span class="o">&lt;-</span> <span class="nx">store</span><span class="p">.</span><span class="nx">Fetch</span><span class="p">()</span>
+<span class="p">}()</span>
+
+<span class="k">select</span> <span class="p">{</span>
+<span class="k">case</span> <span class="nx">d</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">data</span><span class="p">:</span>
+     <span class="nx">fmt</span><span class="p">.</span><span class="nx">Fprint</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">d</span><span class="p">)</span>
+<span class="k">case</span> <span class="o">&lt;-</span><span class="nx">ctx</span><span class="p">.</span><span class="nx">Done</span><span class="p">():</span>
+     <span class="nx">store</span><span class="p">.</span><span class="nx">Cancel</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="property-based-tests.html" class="btn btn-neutral float-right" title="Intro to property based tests" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="sync.html" class="btn btn-neutral float-left" title="Sync" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Prateek Raman.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
